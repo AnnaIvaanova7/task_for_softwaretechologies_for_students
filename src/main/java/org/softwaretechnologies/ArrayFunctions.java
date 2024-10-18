@@ -11,7 +11,7 @@ public final class ArrayFunctions {
      */
     public static void reverse(int[] array) {
         int n = array.length;
-        for (int i=0; i <= n/2; i++)
+        for (int i=0; i < n/2; i++)
         {
             int b = array[i];
             array[i]=array[n-1-i];
@@ -37,15 +37,15 @@ public final class ArrayFunctions {
         int m = matrix[0].length;
         if (n != m)
         {
-            System.out.println("Error");
+            System.out.println("Матрица не квадратная");
         }
-        for (int i = 0; i<=n; i++)
-        {
-            for (int j = 0; j<=n; j++)
-            {
-                int b = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = b;
+        else {
+            for (int i = 0; i < n; i++) {
+                for (int j = i+1; j < n; j++) {
+                    int b = matrix[i][j];
+                    matrix[i][j] = matrix[j][i];
+                    matrix[j][i] = b;
+                }
             }
         }
 

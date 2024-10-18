@@ -26,7 +26,7 @@ public final class Elevator {
      * Если lowestFloor -3 то в здании три уровня подземной парковки.
      *
      * @param highestFloor Самый верхний этаж, на который может подняться лифт
-     * @param lowestFloor Самый нижний этаж, на который может опуститься лифт
+     * @param lowestFloor  Самый нижний этаж, на который может опуститься лифт
      */
     public Elevator(int lowestFloor, int highestFloor) {
         this.currentFloor = lowestFloor;
@@ -50,51 +50,41 @@ public final class Elevator {
 
     /**
      * Функция передвигает лифт на указанный этаж.
-       Используйте функции goUp и goDown.
-       Перед каждым изменением этажа выводится сообщение:
-       Текущий этаж: номер_текущего_этажа
+     * Используйте функции goUp и goDown.
+     * Перед каждым изменением этажа выводится сообщение:
+     * Текущий этаж: номер_текущего_этажа
      * Когда достигнут указанный этаж, вывести сообщение:
-       Вы достигли указанного этажа: номер_указанного_этажа
+     * Вы достигли указанного этажа: номер_указанного_этажа
      * Пример: лифт находится на 10 этаже. Вы указали 10 этаж.
      * Все сообщения на экране после вызова функции:
-       Вы достигли указанного этажа: 10
+     * Вы достигли указанного этажа: 10
      * Пример: лифт находится на 10 этаже. Вы указали 7 этаж.
      * Все сообщения на экране после вызова функции:
-       Текущий этаж: 10
-       Текущий этаж: 9
-       Текущий этаж: 8
-       Вы достигли указанного этажа: 7
+     * Текущий этаж: 10
+     * Текущий этаж: 9
+     * Текущий этаж: 8
+     * Вы достигли указанного этажа: 7
      * Если указанного этажа не существует, то вывести сообщение:
-       Указан неверный этаж
+     * Указан неверный этаж
      * Не изменять этаж, на котором сейчас находится лифт, если указан
-       несуществующий этаж.
+     * несуществующий этаж.
+     *
      * @param floor этаж, на который должен переместиться лифт
      */
-    public void goToExactFloor(int floor)
-    {
-        if (floor > highestFloor || floor < lowestFloor)
-        {
+    public void goToExactFloor(int floor) {
+        if (floor > highestFloor || floor < lowestFloor) {
             System.out.println("Указан неверный этаж");
-        }
-        else
-        {
-            if (floor == currentFloor)
-            {
+        } else {
+            if (floor == currentFloor) {
                 System.out.println("Вы достигли указанного этажа: " + currentFloor);
-            }
-            else
-            {
-                while (currentFloor != floor)
-                {
-                    if (floor > currentFloor)
-                    {
-                        System.out.println("Текущий этаж: "+ currentFloor);
+            } else {
+                while (currentFloor != floor) {
+                    if (floor > currentFloor) {
+                        System.out.println("Текущий этаж: " + currentFloor);
                         goUp();
 
-                    }
-                    else if (floor < currentFloor)
-                    {
-                        System.out.println("Текущий этаж: "+ currentFloor);
+                    } else {
+                        System.out.println("Текущий этаж: " + currentFloor);
                         goDown();
 
                     }
@@ -102,7 +92,7 @@ public final class Elevator {
                 System.out.println("Вы достигли указанного этажа: " + currentFloor);
             }
         }
-       // TODO: реализуйте вышеуказанную функцию
+        // TODO: реализуйте вышеуказанную функцию
     }
 
     /**

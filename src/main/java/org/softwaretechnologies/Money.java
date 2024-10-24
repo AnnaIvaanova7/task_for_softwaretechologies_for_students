@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 import java.util.Random;
 
 import static java.lang.Integer.MAX_VALUE;
+import static org.softwaretechnologies.MoneyType.USD;
 
 public class Money {
     private final MoneyType type;
@@ -26,9 +27,25 @@ public class Money {
      */
     @Override
     public boolean equals(Object o) {
+        if (this == o){
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
+
+        Money money = (Money) o;
+
+        if (type != money.type){
+            return false;
+        }
+
+        BigDecimal one = (amount == null) ? BigDecimal.ZERO : amount.setScale(4, RoundingMode.HALF_UP);
+        BigDecimal two = (money.amount == null) ? BigDecimal.ZERO : money.amount.setScale(4, RoundingMode.HALF_UP);
         // TODO: реализуйте вышеуказанную функцию
 
-        return false;
+        return one.equals(two);
     }
 
     /**
@@ -49,10 +66,32 @@ public class Money {
     @Override
     public int hashCode() {
         // TODO: реализуйте вышеуказанную функцию
+        BigDecimal sAmount = (amount == null) ? BigDecimal.valueOf(10000) : amount.setScale(4, RoundingMode.HALF_UP);
 
+        int amountHash = sAmount.multiply(BigDecimal.valueOf(10000)).intValue();
 
-        Random random = new Random();
-        return random.nextInt();
+        int typeHash;
+        if (type == null){
+            typeHash = 5;
+        }
+        else {
+            switch (type) {
+                case USD:
+                    typeHash = 1;
+                case RUB:
+                    typeHash = 3;
+                case EURO:
+                    typeHash = 2;
+                case KRONA:
+                    typeHash = 4;
+                default:
+                    typeHash = 5;
+            }
+        }
+
+        int Hash = amountHash + typeHash;
+
+        return (Hash >= (MAX_VALUE - 5)) ? MAX_VALUE : Hash;
     }
 
     /**
@@ -75,8 +114,11 @@ public class Money {
     @Override
     public String toString() {
         // TODO: реализуйте вышеуказанную функцию
-        String str = type.toString()+": "+amount.setScale(4, RoundingMode.HALF_UP).toString();
-        return str;
+        String StrAmount = (amount == null) ? "null" : amount.setScale(4, RoundingMode.HALF_UP).toString();
+
+        String StrType = (type == null) ? "null" : type.toString();
+
+        return StrType + ": " + StrAmount;
     }
 
     public BigDecimal getAmount() {
@@ -89,7 +131,7 @@ public class Money {
 
     public static void main(String[] args) {
         Money money = new Money(MoneyType.EURO, BigDecimal.valueOf(10.00012));
-        Money money1 = new Money(MoneyType.USD, BigDecimal.valueOf(10.5000));
+        Money money1 = new Money(USD, BigDecimal.valueOf(10.5000));
         System.out.println(money1.toString());
         System.out.println(money1.hashCode());
         System.out.println(money.equals(money1));

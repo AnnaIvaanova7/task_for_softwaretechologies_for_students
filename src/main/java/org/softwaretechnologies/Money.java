@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.Random;
 
 import static java.lang.Integer.MAX_VALUE;
-import static org.softwaretechnologies.MoneyType.USD;
+import static org.softwaretechnologies.MoneyType.*;
 
 public class Money {
     private final MoneyType type;
@@ -70,24 +70,24 @@ public class Money {
 
         int amountHash = sAmount.multiply(BigDecimal.valueOf(10000)).intValue();
 
-        int typeHash;
+        int typeHash = 0;
         if (type == null){
-            typeHash = 5;
+             typeHash = 5;
         }
-        else {
-            switch (type) {
-                case USD:
-                    typeHash = 1;
-                case RUB:
-                    typeHash = 3;
-                case EURO:
-                    typeHash = 2;
-                case KRONA:
-                    typeHash = 4;
-                default:
-                    typeHash = 5;
+        else if (type == USD){
+                 typeHash = 1;
             }
+        else if (type == EURO){
+             typeHash = 2;
         }
+        else if (type == RUB){
+             typeHash = 3;
+
+        }
+        else if (type == KRONA){
+             typeHash = 4;
+        }
+
 
         int Hash = amountHash + typeHash;
 

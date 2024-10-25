@@ -74,24 +74,24 @@ public class Money {
         if (type == null){
              typeHash = 5;
         }
-        else if (type == USD){
+        else if (USD.equals(type)){
                  typeHash = 1;
             }
-        else if (type == EURO){
+        else if (EURO.equals(type)){
              typeHash = 2;
         }
-        else if (type == RUB){
+        else if (RUB.equals(type)){
              typeHash = 3;
 
         }
-        else if (type == KRONA){
+        else if (KRONA.equals(type)){
              typeHash = 4;
         }
 
 
-        int Hash = amountHash + typeHash;
+        int hash = amountHash + typeHash;
 
-        return (Hash >= (MAX_VALUE - 5)) ? MAX_VALUE : Hash;
+        return (hash >= (MAX_VALUE - 5)) ? MAX_VALUE : hash;
     }
 
     /**

@@ -9,8 +9,11 @@ public class ExceptionTask {
        Вызвана функция printMessage
      */
     public static void printMessage() {
-        throwRuntimeException();
-        // TODO: реализуйте вышеуказанную функцию
+        try {
+            throwRuntimeException();
+        } catch (Exception s) {
+            System.out.println("Вызвана функция printMessage");
+        }
 
     }
 
@@ -20,8 +23,11 @@ public class ExceptionTask {
      Вызвана функция printMessage2
      */
     public static void printMessage2() throws Exception {
-        throwCatchableException();
-        // TODO: реализуйте вышеуказанную функцию
+        try {
+            throwRuntimeException();
+        }catch (Exception s) {
+            System.out.println("Вызвана функция printMessage2");
+        }
     }
 
     private static void throwCatchableException() throws Exception {
@@ -41,7 +47,9 @@ public class ExceptionTask {
      */
     public static int divide(int dividend, int divisor) throws DivideOnNullException {
 
-        // TODO: реализуйте вышеуказанную функцию
+        if (divisor == 0){
+            throw new DivideOnNullException();
+        }
         return dividend/divisor;
     }
 
@@ -55,7 +63,11 @@ public class ExceptionTask {
      * @return конкатенацию двух строк: кротчайшую из двух строк с другой строкой.
      */
     public static Optional<String> mergeStrings(String first, String second) {
-        // TODO: реализуйте вышеуказанную функцию
+        if (first == null && second == null) {
+            return Optional.empty();
+        } else if (first == null){
+            return Optional.of(second);
+        } else if (second == null){return Optional.of(first);}
 
 
 

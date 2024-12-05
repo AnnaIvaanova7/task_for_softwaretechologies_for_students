@@ -10,7 +10,39 @@ public abstract class Animal {
     public String getName() {
         return name;
     }
+    public static class Cat extends Animal {
 
+        public Cat(String name) {
+            super(name);
+        }
+
+        @Override
+        public String sound() {
+            return "meow";
+        }
+    }
+
+    public static class Cow extends Animal{
+        public Cow(String name) {
+            super(name);
+        }
+
+        @Override
+        public String sound() {
+            return "moo";
+        }
+    }
+
+    public static class Dog extends Animal {
+        public Dog(String name) {
+            super(name);
+        }
+
+        @Override
+        public String sound() {
+            return "woof";
+        }
+    }
     /**
      * Создайте три класса животных: кошка, корова, собака.
      * Кошка должна издавать звук: "meow"
